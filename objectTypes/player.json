@@ -1,0 +1,109 @@
+{
+	"name": "player",
+	"plugin-id": "Sprite",
+	"sid": 162494379627575,
+	"isGlobal": false,
+	"instanceVariables": [
+		{
+			"name": "playerhealt",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 344995794198945
+		}
+	],
+	"behaviorTypes": [
+		{
+			"behaviorId": "EightDir",
+			"name": "8Direction",
+			"sid": 965491128310159
+		},
+		{
+			"behaviorId": "bound",
+			"name": "BoundToLayout",
+			"sid": 424147684854000
+		},
+		{
+			"behaviorId": "scrollto",
+			"name": "ScrollTo",
+			"sid": 436149375253143
+		},
+		{
+			"behaviorId": "Flash",
+			"name": "Flash",
+			"sid": 921820913765364
+		}
+	],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 255,
+						"height": 215,
+						"originX": 0.9647058823529412,
+						"originY": 0.7534883720930232,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 6496243,
+						"collisionPoly": {
+							"points": [
+								0.36470588235294116,
+								0.18604651162790697,
+								0.4627450980392157,
+								0.2,
+								0.7333333333333333,
+								0.3488372093023256,
+								0.7764705882352941,
+								0.386046511627907,
+								0.807843137254902,
+								0.4232558139534884,
+								0.9529411764705882,
+								0.7348837209302326,
+								0.9333333333333333,
+								0.7906976744186046,
+								0.5372549019607843,
+								0.8837209302325582,
+								0.40784313725490196,
+								0.8930232558139535,
+								0.25882352941176473,
+								0.8558139534883721,
+								0.1843137254901961,
+								0.7674418604651163,
+								0.1450980392156863,
+								0.4604651162790698,
+								0.17254901960784313,
+								0.32558139534883723,
+								0.21176470588235294,
+								0.27906976744186046,
+								0.2784313725490196,
+								0.2186046511627907
+							]
+						},
+						"useCollisionPoly": true,
+						"imagePoints": [
+							{
+								"name": "Image Point 1",
+								"x": 0.9333333333333333,
+								"y": 0.7534883720930232
+							}
+						],
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 769786338205089,
+				"name": "Animation 1",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			}
+		],
+		"subfolders": []
+	}
+}

@@ -1,0 +1,79 @@
+{
+	"name": "splashgame",
+	"events": [
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "is-touching-object",
+					"objectClass": "Touch",
+					"sid": 246008816536433,
+					"parameters": {
+						"object": "start"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "go-to-layout",
+					"objectClass": "System",
+					"sid": 288535354375878,
+					"parameters": {
+						"layout": "main"
+					}
+				}
+			],
+			"sid": 121662320421058
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 533772305508173
+				}
+			],
+			"actions": [
+				{
+					"id": "play",
+					"objectClass": "Audio",
+					"sid": 310026754859840,
+					"parameters": {
+						"audio-file": "2nd Sonata - Malign Chords",
+						"loop": "not-looping",
+						"volume": "0",
+						"stereo-pan": "0",
+						"tag-optional": "\"\""
+					}
+				}
+			],
+			"sid": 765291995852922
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-key-pressed",
+					"objectClass": "Keyboard",
+					"sid": 574621391872672,
+					"parameters": {
+						"key": 32
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "go-to-layout",
+					"objectClass": "System",
+					"sid": 219870161636286,
+					"parameters": {
+						"layout": "main"
+					}
+				}
+			],
+			"sid": 708436226398260
+		}
+	],
+	"sid": 848074060842224
+}

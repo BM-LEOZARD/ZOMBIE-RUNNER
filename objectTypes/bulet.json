@@ -1,0 +1,75 @@
+{
+	"name": "bulet",
+	"plugin-id": "Sprite",
+	"sid": 305974164255212,
+	"isGlobal": false,
+	"instanceVariables": [],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Bullet",
+			"name": "Bullet",
+			"sid": 164917288697547
+		},
+		{
+			"behaviorId": "destroy",
+			"name": "DestroyOutsideLayout",
+			"sid": 582242614489869
+		}
+	],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 1280,
+						"height": 1280,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 8393684,
+						"collisionPoly": {
+							"points": [
+								0.365625,
+								0.390625,
+								0.9515625,
+								0.390625,
+								1,
+								0.43984375,
+								1,
+								0.56171875,
+								0.9515625,
+								0.61015625,
+								0.365625,
+								0.61015625,
+								0,
+								0.48828125
+							]
+						},
+						"useCollisionPoly": true,
+						"imagePoints": [
+							{
+								"name": "Image Point 1",
+								"x": 0.50546875,
+								"y": 0.49609375
+							}
+						],
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 384735024047633,
+				"name": "Animation 1",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			}
+		],
+		"subfolders": []
+	}
+}

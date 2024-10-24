@@ -1,0 +1,892 @@
+{
+	"name": "main",
+	"events": [
+		{
+			"eventType": "variable",
+			"name": "score",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 184583424360441
+		},
+		{
+			"eventType": "variable",
+			"name": "ZombieSpeed",
+			"type": "number",
+			"initialValue": "100",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 772426045317943
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-click",
+					"objectClass": "Mouse",
+					"sid": 784735801883814,
+					"disabled": true,
+					"parameters": {
+						"mouse-button": "right",
+						"click-type": "clicked"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "spawn-another-object",
+					"objectClass": "player",
+					"sid": 189578722471910,
+					"parameters": {
+						"object": "bulet",
+						"layer": "0",
+						"image-point": "0",
+						"create-hierarchy": false,
+						"template-name": "\"\""
+					}
+				}
+			],
+			"sid": 124419045364067,
+			"disabled": true
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-tick",
+					"objectClass": "System",
+					"sid": 926479740090671
+				}
+			],
+			"actions": [
+				{
+					"id": "set-angle-toward-position",
+					"objectClass": "player",
+					"sid": 541137479520787,
+					"disabled": true,
+					"parameters": {
+						"x": "Mouse.X",
+						"y": "Mouse.Y"
+					}
+				},
+				{
+					"id": "set-text",
+					"objectClass": "Text",
+					"sid": 146165649673576,
+					"parameters": {
+						"text": "\"score\" & score"
+					}
+				}
+			],
+			"sid": 101101780281766
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "is-outside-layout",
+					"objectClass": "zombie",
+					"sid": 694284940605311
+				}
+			],
+			"actions": [
+				{
+					"id": "set-angle-toward-position",
+					"objectClass": "zombie",
+					"sid": 470636348109430,
+					"parameters": {
+						"x": "player.X",
+						"y": "player.Y"
+					}
+				}
+			],
+			"sid": 836103522916322
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "for-each",
+					"objectClass": "System",
+					"sid": 209345024089009,
+					"parameters": {
+						"object": "zombie"
+					}
+				},
+				{
+					"id": "is-between-angles",
+					"objectClass": "System",
+					"sid": 176518278547501,
+					"parameters": {
+						"angle": "distance(player.X,player.Y,zombie.X,zombie.Y) < 200",
+						"first-angle": "0",
+						"second-angle": "45"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "find-path",
+					"objectClass": "zombie",
+					"sid": 123994843736149,
+					"behaviorType": "Pathfinding",
+					"parameters": {
+						"x": "player.X",
+						"y": "player.Y"
+					}
+				}
+			],
+			"sid": 582669387928630
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-path-found",
+					"objectClass": "zombie",
+					"sid": 301718933905972,
+					"behaviorType": "Pathfinding"
+				}
+			],
+			"actions": [
+				{
+					"id": "move-along-path",
+					"objectClass": "zombie",
+					"sid": 342774388450424,
+					"behaviorType": "Pathfinding"
+				}
+			],
+			"sid": 730931458693455
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-collision-with-another-object",
+					"objectClass": "bulet",
+					"sid": 870796309980507,
+					"parameters": {
+						"object": "zombie"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "destroy",
+					"objectClass": "bulet",
+					"sid": 254709640781501
+				},
+				{
+					"id": "subtract-from-instvar",
+					"objectClass": "zombie",
+					"sid": 654061465848999,
+					"parameters": {
+						"instance-variable": "zombiehealt",
+						"value": "1"
+					}
+				}
+			],
+			"sid": 354275183854770
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-x-seconds",
+					"objectClass": "System",
+					"sid": 240410138038347,
+					"parameters": {
+						"interval-seconds": "2.0"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "create-object",
+					"objectClass": "System",
+					"sid": 600581705171781,
+					"parameters": {
+						"object-to-create": "zombie",
+						"layer": "0",
+						"x": "random(0,1708)",
+						"y": "random(0,960)",
+						"create-hierarchy": false,
+						"template-name": "\"\""
+					}
+				},
+				{
+					"id": "add-to-eventvar",
+					"objectClass": "System",
+					"sid": 950792431107696,
+					"parameters": {
+						"variable": "ZombieSpeed",
+						"value": "5"
+					}
+				},
+				{
+					"id": "set-speed",
+					"objectClass": "zombie",
+					"sid": 309465292456456,
+					"behaviorType": "Pathfinding",
+					"parameters": {
+						"speed": "ZombieSpeed"
+					}
+				}
+			],
+			"sid": 627312714811753
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "zombie",
+					"sid": 643825241176579,
+					"parameters": {
+						"instance-variable": "zombiehealt",
+						"comparison": 3,
+						"value": "0"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "spawn-another-object",
+					"objectClass": "zombie",
+					"sid": 172752686690064,
+					"parameters": {
+						"object": "Sprite4",
+						"layer": "0",
+						"image-point": "0",
+						"create-hierarchy": false,
+						"template-name": "\"\""
+					}
+				},
+				{
+					"id": "destroy",
+					"objectClass": "zombie",
+					"sid": 640778648619662
+				},
+				{
+					"id": "add-to-eventvar",
+					"objectClass": "System",
+					"sid": 957263228102663,
+					"parameters": {
+						"variable": "score",
+						"value": "zombie.movement.Speed"
+					}
+				},
+				{
+					"id": "play",
+					"objectClass": "Audio",
+					"sid": 706783504908748,
+					"parameters": {
+						"audio-file": "zombie-6851",
+						"loop": "not-looping",
+						"volume": "0",
+						"stereo-pan": "0",
+						"tag-optional": "\"\""
+					}
+				}
+			],
+			"sid": 953279319468535
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 986568401371499
+				}
+			],
+			"actions": [
+				{
+					"id": "set-visible",
+					"objectClass": "textgameover1",
+					"sid": 846028171238619,
+					"parameters": {
+						"visibility": "invisible"
+					}
+				},
+				{
+					"id": "set-visible",
+					"objectClass": "textrestart",
+					"sid": 623390083774875,
+					"parameters": {
+						"visibility": "invisible"
+					}
+				},
+				{
+					"id": "set-visible",
+					"objectClass": "homescreen",
+					"sid": 267289708873551,
+					"parameters": {
+						"visibility": "invisible"
+					}
+				},
+				{
+					"id": "set-visible",
+					"objectClass": "textgameover2",
+					"sid": 502101827014531,
+					"parameters": {
+						"visibility": "invisible"
+					}
+				}
+			],
+			"sid": 665162786298334
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-collision-with-another-object",
+					"objectClass": "zombie",
+					"sid": 482954086836230,
+					"parameters": {
+						"object": "player"
+					}
+				}
+			],
+			"actions": [],
+			"sid": 131920086691497,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-in-preview",
+							"objectClass": "System",
+							"sid": 867636492248479
+						}
+					],
+					"actions": [
+						{
+							"id": "flash",
+							"objectClass": "player",
+							"sid": 810388339937481,
+							"behaviorType": "Flash",
+							"parameters": {
+								"on-time": "0.1",
+								"off-time": "0.1",
+								"duration": "1.0"
+							}
+						},
+						{
+							"id": "subtract-from-instvar",
+							"objectClass": "player",
+							"sid": 285234627327372,
+							"parameters": {
+								"instance-variable": "playerhealt",
+								"value": "1"
+							}
+						},
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 247513858527184,
+							"parameters": {
+								"audio-file": "male-death-sound-128357",
+								"loop": "not-looping",
+								"volume": "0",
+								"stereo-pan": "0",
+								"tag-optional": "\"\""
+							}
+						}
+					],
+					"sid": 286866406845632
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "player",
+							"sid": 614680329877487,
+							"parameters": {
+								"instance-variable": "playerhealt",
+								"comparison": 0,
+								"value": "2"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "destroy",
+							"objectClass": "love1",
+							"sid": 616377354237527
+						}
+					],
+					"sid": 794984129293008
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "player",
+							"sid": 721843765230959,
+							"parameters": {
+								"instance-variable": "playerhealt",
+								"comparison": 0,
+								"value": "1"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "destroy",
+							"objectClass": "love2",
+							"sid": 856017586758125
+						}
+					],
+					"sid": 759842082118358
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "player",
+							"sid": 675907552709813,
+							"parameters": {
+								"instance-variable": "playerhealt",
+								"comparison": 0,
+								"value": "0"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "destroy",
+							"objectClass": "player",
+							"sid": 695142774340810
+						},
+						{
+							"id": "set-visible",
+							"objectClass": "textgameover1",
+							"sid": 611864998243761,
+							"parameters": {
+								"visibility": "visible"
+							}
+						},
+						{
+							"id": "set-visible",
+							"objectClass": "textrestart",
+							"sid": 186468345229601,
+							"parameters": {
+								"visibility": "visible"
+							}
+						},
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 664199223291843,
+							"parameters": {
+								"audio-file": "Mario Death - Sound Effect (HD)",
+								"loop": "not-looping",
+								"volume": "0",
+								"stereo-pan": "0",
+								"tag-optional": "\"\""
+							}
+						},
+						{
+							"id": "destroy",
+							"objectClass": "love3",
+							"sid": 330662359578142
+						},
+						{
+							"id": "set-visible",
+							"objectClass": "Sprite",
+							"sid": 197006698300117,
+							"parameters": {
+								"visibility": "invisible"
+							}
+						},
+						{
+							"id": "set-visible",
+							"objectClass": "atas",
+							"sid": 636930510142640,
+							"parameters": {
+								"visibility": "invisible"
+							}
+						},
+						{
+							"id": "set-visible",
+							"objectClass": "bawah",
+							"sid": 915264170857491,
+							"parameters": {
+								"visibility": "invisible"
+							}
+						},
+						{
+							"id": "set-visible",
+							"objectClass": "kanan",
+							"sid": 317091528771581,
+							"parameters": {
+								"visibility": "invisible"
+							}
+						},
+						{
+							"id": "set-visible",
+							"objectClass": "kiri",
+							"sid": 745335996256309,
+							"parameters": {
+								"visibility": "invisible"
+							}
+						},
+						{
+							"id": "set-visible",
+							"objectClass": "homescreen",
+							"sid": 467614519773963,
+							"parameters": {
+								"visibility": "visible"
+							}
+						},
+						{
+							"id": "set-visible",
+							"objectClass": "textgameover2",
+							"sid": 562272650372406,
+							"parameters": {
+								"visibility": "visible"
+							}
+						}
+					],
+					"sid": 655935612416747
+				}
+			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-key-pressed",
+					"objectClass": "Keyboard",
+					"sid": 388558906198717,
+					"parameters": {
+						"key": 32
+					}
+				},
+				{
+					"id": "compare-two-values",
+					"objectClass": "System",
+					"sid": 724150824708941,
+					"parameters": {
+						"first-value": "player.Count",
+						"comparison": 0,
+						"second-value": "0"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 228020999935065,
+					"parameters": {
+						"variable": "ZombieSpeed",
+						"value": "80"
+					}
+				},
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 941732529129078,
+					"parameters": {
+						"variable": "score",
+						"value": "0"
+					}
+				},
+				{
+					"id": "go-to-layout",
+					"objectClass": "System",
+					"sid": 898634062935092,
+					"parameters": {
+						"layout": "main"
+					}
+				}
+			],
+			"sid": 178425037776810
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "is-touching-object",
+					"objectClass": "Touch",
+					"sid": 554172762355817,
+					"parameters": {
+						"object": "textrestart"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 207709015445533,
+					"parameters": {
+						"variable": "ZombieSpeed",
+						"value": "80"
+					}
+				},
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 873040352591351,
+					"parameters": {
+						"variable": "score",
+						"value": "0"
+					}
+				},
+				{
+					"id": "go-to-layout",
+					"objectClass": "System",
+					"sid": 641877201303881,
+					"parameters": {
+						"layout": "main"
+					}
+				}
+			],
+			"sid": 377333725437319
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-tap-object",
+					"objectClass": "Touch",
+					"sid": 833745794859626,
+					"parameters": {
+						"object": "Sprite"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "spawn-another-object",
+					"objectClass": "player",
+					"sid": 485032550302313,
+					"parameters": {
+						"object": "bulet",
+						"layer": "0",
+						"image-point": "0",
+						"create-hierarchy": false,
+						"template-name": "\"\""
+					}
+				},
+				{
+					"id": "play",
+					"objectClass": "Audio",
+					"sid": 113292173528332,
+					"parameters": {
+						"audio-file": "laser-shot-ingame-230500",
+						"loop": "not-looping",
+						"volume": "0",
+						"stereo-pan": "0",
+						"tag-optional": "\"\""
+					}
+				}
+			],
+			"sid": 162466873328850
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "is-touching-object",
+					"objectClass": "Touch",
+					"sid": 896423497887961,
+					"parameters": {
+						"object": "bawah"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "simulate-control",
+					"objectClass": "player",
+					"sid": 656719825187987,
+					"behaviorType": "8Direction",
+					"parameters": {
+						"control": "down"
+					}
+				}
+			],
+			"sid": 779504395507726
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "is-touching-object",
+					"objectClass": "Touch",
+					"sid": 568259819460136,
+					"parameters": {
+						"object": "atas"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "simulate-control",
+					"objectClass": "player",
+					"sid": 539520545483456,
+					"behaviorType": "8Direction",
+					"parameters": {
+						"control": "up"
+					}
+				}
+			],
+			"sid": 871853399535814
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "is-touching-object",
+					"objectClass": "Touch",
+					"sid": 480313808464005,
+					"parameters": {
+						"object": "kanan"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "simulate-control",
+					"objectClass": "player",
+					"sid": 759496947789859,
+					"behaviorType": "8Direction",
+					"parameters": {
+						"control": "right"
+					}
+				}
+			],
+			"sid": 546345198369586
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "is-touching-object",
+					"objectClass": "Touch",
+					"sid": 331649860566165,
+					"parameters": {
+						"object": "kiri"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "simulate-control",
+					"objectClass": "player",
+					"sid": 709347614112379,
+					"behaviorType": "8Direction",
+					"parameters": {
+						"control": "left"
+					}
+				}
+			],
+			"sid": 100765105256854
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "is-touching-object",
+					"objectClass": "Touch",
+					"sid": 279351842833682,
+					"parameters": {
+						"object": "homescreen"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 764173994675330,
+					"parameters": {
+						"variable": "ZombieSpeed",
+						"value": "80"
+					}
+				},
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 781926541149378,
+					"parameters": {
+						"variable": "score",
+						"value": "0"
+					}
+				},
+				{
+					"id": "go-to-layout",
+					"objectClass": "System",
+					"sid": 286264897348767,
+					"parameters": {
+						"layout": "splashgame"
+					}
+				}
+			],
+			"sid": 768312051078535
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-key-pressed",
+					"objectClass": "Keyboard",
+					"sid": 220784615492651,
+					"parameters": {
+						"key": 8
+					}
+				},
+				{
+					"id": "compare-two-values",
+					"objectClass": "System",
+					"sid": 420037739506634,
+					"parameters": {
+						"first-value": "player.Count",
+						"comparison": 0,
+						"second-value": "0"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 663330529039396,
+					"parameters": {
+						"variable": "ZombieSpeed",
+						"value": "80"
+					}
+				},
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 460645333046897,
+					"parameters": {
+						"variable": "score",
+						"value": "0"
+					}
+				},
+				{
+					"id": "go-to-layout",
+					"objectClass": "System",
+					"sid": 849839509155924,
+					"parameters": {
+						"layout": "splashgame"
+					}
+				}
+			],
+			"sid": 691998790484662
+		}
+	],
+	"sid": 631369427029131
+}
