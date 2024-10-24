@@ -1,0 +1,36 @@
+{
+	"name": "zombie runner",
+	"version": "1.0.0.0",
+	"description": "",
+	"id": "",
+	"unique-id": "wvosn8y5msa",
+	"viewport-width": 854,
+	"viewport-height": 480,
+	"author": "",
+	"email": "",
+	"website": "",
+	"orientations": "landscape",
+	"c2version": "244",
+	"c3version": "r407.2",
+	"ife": true,
+	"used-plugins": [
+		"TiledBg",
+		"Sprite",
+		"Mouse",
+		"Text",
+		"Keyboard",
+		"Touch",
+		"Audio"
+	],
+	"used-behaviors": [
+		"EightDir",
+		"bound",
+		"scrollto",
+		"Flash",
+		"Bullet",
+		"destroy",
+		"Pathfinding",
+		"Fade",
+		"Anchor"
+	]
+}
